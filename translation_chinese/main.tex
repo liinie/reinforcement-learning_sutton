@@ -18,9 +18,12 @@
 时序差分和蒙特卡罗这两种方法都是用经验来解决预测问题。
 已知一些经验遵从策略$\pi$，两种算法为在经验中经过的非终点状态$S_t$更新他们的估计值$V$ ($V$ of $v_\pi$)。
 简单地说，蒙特卡罗方法要等到访问某一状态的回馈已知，才会把回馈作为$V(S_t)$的目标。
-一个简单的适合非固定环境的every-visit MC方法是：
+一个简单的适合非固定(nonstationary)环境的every-visit MC方法是：
 \begin{align}
 	V(S_t) \leftarrow V(S_t) + \alpha[G_t - V(S_t)]
 \end{align}
+
+$G_t$是从时间$t$开始的实际回馈，$\alpha$是一个常量步长参数(constant step-size parameter)(参见[Equation 2.4])
+
 
 \end{document}
