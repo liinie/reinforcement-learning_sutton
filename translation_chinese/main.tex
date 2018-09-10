@@ -19,11 +19,21 @@
 已知一些经验遵从策略$\pi$，两种算法为在经验中经过的非终点状态$S_t$更新他们的估计值$V$ ($V$ of $v_\pi$)。
 简单地说，蒙特卡罗方法要等到访问某一状态的回馈已知，才会把回馈作为$V(S_t)$的目标。
 一个简单的适合非固定(nonstationary)环境的every-visit MC方法是：
+
 \begin{align}
 	V(S_t) \leftarrow V(S_t) + \alpha[G_t - V(S_t)]
 \end{align}
 
-$G_t$是从时间$t$开始的实际回馈，$\alpha$是一个常量步长参数(constant step-size parameter)(参见[Equation 2.4])
+$G_t$是从时间$t$开始的实际回馈，$\alpha$是一个常量步长参数(constant step-size parameter)(参见[Equation 2.4])。
+让我们称这个方法为\textit{constant-$\alpha$ MC}。
+任何蒙特卡罗方法都要等到一个episode结束才能来更新$V(S_t)$ (只有这样才能得到$G_t$)，而时序差分法只需等到下一步。
+在$t+1$时这类方法会立即构成目标(target)并通过使用奖励$R_{t+1}$和评估$V(S_{t+1})$来做一个有用的更新。[Translate it better: "and make a useful update using the observed reward and the estimate"]
+最简单的时序差分法会在状态转换到$S_{t+1}$是李辑更新并受到回馈$R_{t+1}$。
+
+\begin{align}
+	V(S_t) \leftarrow V(S_t) + \alpha[R_{t+1} + \gamma V(S_{t+1}) - V(S_t)]
+\end{align}
+
 
 
 \end{document}
